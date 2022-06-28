@@ -22,7 +22,7 @@ function parseInputArgs() {
     const args = process.argv.slice(2)
     return {
         'host': args[0],
-        'port': args[1],
-        'path': args[2]
+        'port': args[1] || '8545',
+        'path': args[2] || '/'
     }
 }
