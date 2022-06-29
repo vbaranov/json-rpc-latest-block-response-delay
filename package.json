@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "moment": "^2.29.3"
+    "moment": "^2.29.3",
+    "web3": "^1.7.4"
   },
   "devDependencies": {
     "eslint": "^8.18.0"

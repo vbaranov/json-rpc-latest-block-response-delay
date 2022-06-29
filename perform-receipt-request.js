@@ -1,6 +1,6 @@
 import https from 'https'
 import http from 'http'
-import moment from 'moment'
+import helper from './helper.js'
 
 const getLatestBlock = (rpcHost, rpcPort, rpcPath) => {
     return new Promise((resolve, reject) => {
@@ -36,14 +36,8 @@ const getLatestBlock = (rpcHost, rpcPort, rpcPath) => {
                 const respJSON = JSON.parse(body)
     
                 if (respJSON && respJSON.result) {
-                    const blockNumber = respJSON.result.number && parseInt(respJSON.result.number, 16)
-                    const blockTimestamp = moment.unix(respJSON.result.timestamp && parseInt(respJSON.result.timestamp, 16))
-                    const blockTimestampFromatted = blockTimestamp.format()
-                    const currentTimestamp =  moment()
-                    const currentTimestampFormatted =  currentTimestamp.format()
-                    const delay = moment.duration(currentTimestamp.diff(blockTimestamp)).asSeconds() + ' sec'
-                    const numOfTransactions = respJSON.result.transactions.length
-                    resolve({ blockNumber, blockTimestamp: blockTimestampFromatted, currentTimestamp: currentTimestampFormatted, delay, numOfTransactions })
+                    const response = helper.generateResponse(respJSON.result)
+                    resolve(response)
                 } else {
                     reject('Response or response result is null')
                 }
