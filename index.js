@@ -11,7 +11,7 @@ async function checkBlocksNumber() {
         var blockData = await helper.getLatestBlock(node.host, node.port, node.path)
         if (latestObservedBlockNumber !== blockData.blockNumber) {
             latestObservedBlockNumber = blockData.blockNumber
-            console.log(blockData)
+            console.log(JSON.stringify(blockData))
         }
     } catch (err) {
         console.log(err)
