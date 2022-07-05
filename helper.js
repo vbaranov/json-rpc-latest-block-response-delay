@@ -23,7 +23,7 @@ function isHexString(input) {
 }
 
 function generateResponse(block) {
-    const blockNumber = block.number && parseInt(block.number, 16)
+    const blockNumber = isHexString(block.number) ? block.number && parseInt(block.number, 16) : block.number
     const blockTimestampUnix = isHexString(block.timestamp) ? block.timestamp && parseInt(block.timestamp, 16) : block.timestamp
     const blockTimestamp = moment.unix(blockTimestampUnix)
     const blockTimestampFormatted = blockTimestamp.format()
